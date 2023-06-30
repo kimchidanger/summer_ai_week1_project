@@ -16,3 +16,8 @@ def manageAccountMenu():
     print("4. View all my messages")
     print("5. <- Go back ")
     return input("Please Choose a number: ")
+
+def myfunc(self):
+    print("Hi, my name is " + self.id + "," + self.year + "years old")
+
+
