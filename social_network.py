@@ -50,11 +50,51 @@ if __name__ == "__main__":
                         break
 
                 if inner_menu_choice == "2":
+                    print("")
                     for person in ai_social_network.list_of_people:
                         print(person.id)
-
+                    friend = input("Pick a user to friend: ")
+                    if friend == "Eli":
+                        if p1 in person.friendlist:
+                            print("Eli is already your friend")
+                        else:
+                            person.friendlist.append(p1)
+                    if friend == "John":
+                        if p2 in person.friendlist:
+                            print("John is already your friend")
+                        else:
+                            person.friendlist.append(p2)
+                    if friend == "Jack":
+                        if p3 in person.friendlist:
+                            print("Jack is already your friend")
+                        else:
+                            person.friendlist.append(p3)
                 
-
+                if inner_menu_choice == "3":
+                    print("")
+                    for person in person.friendlist:
+                        print(person.id)
+                    print("")
+                    print("1. Remove Friend")
+                    print("2. Quit")
+                    inner_menu_choice2 = input("Please Choose a number: ")
+                    if inner_menu_choice2 == "1":
+                        for person in person.friendlist:
+                            print(person.id)
+                        friend_remove = input("Remove Which Friend? ")
+                        if friend_remove == person.friendlist:
+                            person.friendlist.pop
+                
+                if inner_menu_choice == "4":
+                    print("")
+                    print("1. Send message")
+                    print("2. View message")
+                    inner_menu_choice3 = input("Please Choose a number ")
+                    if inner_menu_choice3 == "1":
+                        for person in person.friendlist:
+                            print(person.id)
+                        messagedirect = input("Send message to which person? ")                    
+                        
                 if inner_menu_choice == "5":
                     break
                 else:

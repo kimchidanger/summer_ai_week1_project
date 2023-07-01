@@ -13,7 +13,7 @@ def manageAccountMenu():
     print("1. Edit my details")
     print("2. Add a friend")
     print("3. View all my friends")
-    print("4. View all my messages")
+    print("4. Send and view all my messages")
     print("5. <- Go back ")
     return input("Please Choose a number: ")
 
