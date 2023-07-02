@@ -2,15 +2,25 @@
 class SocialNetwork:
     def __init__(self):
         self.list_of_people = [] # this instance variable is initialized to an empty list when social network is created, 
-            # you can save objects of people on the network in this list
-        p1 = Person("Eli", "15")
-        p2 = Person("John", "14")
-        p3 = Person("Jack", "17")  
+        username1 = "Eli"
+        usernick1 = "LOL"
+        userage1 = "15"
+        username2 = "John"
+        usernick2 = "WOW"
+        userage2 = "14"
+        username3 = "Jack"
+        usernick3 = "JackAttack"
+        userage3 = "17"
+        mode = 4
+
+        p1 = Person(username1, usernick1, userage1)
+        p2 = Person(username2, usernick2, userage2)
+        p3 = Person(username3, usernick3, userage3)
 
         self.list_of_people.append(p1)
         self.list_of_people.append(p2)
         self.list_of_people.append(p3)
-
+# you can save objects of people on the network in this list
 
     ## For more challenge try this
     def save_social_media(self):
@@ -32,8 +42,9 @@ class SocialNetwork:
 
 
 class Person:
-    def __init__(self, name, age):
+    def __init__(self, name, user, age):
         self.id = name
+        self.username = user
         self.year = age
         self.friendlist = []
         self.indox = []

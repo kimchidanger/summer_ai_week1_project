@@ -15,6 +15,7 @@ def manageAccountMenu():
     print("3. View all my friends")
     print("4. Send and view all my messages")
     print("5. <- Go back ")
+    print("6. Change account")
     return input("Please Choose a number: ")
 
 def myfunc(self):
