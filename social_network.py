@@ -3,23 +3,10 @@ from  social_network_classes import SocialNetwork,Person
 import social_network_classes
 import social_network_ui
 
-username1 = "Eli"
-usernick1 = "LOL"
-userage1 = "15"
-username2 = "John"
-usernick2 = "WOW"
-userage2 = "14"
-username3 = "Jack"
-usernick3 = "JackAttack"
-userage3 = "17"
 mode = 4
 current_mode = 4
 
 account_creation = False
-
-p1 = Person(username1, usernick1, userage1)
-p2 = Person(username2, usernick2, userage2)
-p3 = Person(username3, usernick3, userage3)
 
 #Create instance of main social network object
 ai_social_network = SocialNetwork()
@@ -43,18 +30,18 @@ if __name__ == "__main__":
                 username4 = username
                 userage = input("What is your age?")
                 userage4 = userage
-                current_user = usernick4
-                p4 = Person(username4, usernick4, userage4)
+                current_user = username4
+                current_account = Person(username4, usernick4, userage4)
+                ai_social_network.list_of_people.append(current_account)
+                ai_social_network.list_of_names.append(username4)
+
                 account_creation = True
 
         elif choice == "2":
             #Handle inner menu here
             inner_menu_choice = social_network_ui.manageAccountMenu()
             while True:
-                if account_creation == False:
-                    print("")
-                    print("You need to make an account first")
-                else:
+                if account_creation == True:
                     if inner_menu_choice == "1":
                         print("")
                         print("1. Change Username")
@@ -63,68 +50,43 @@ if __name__ == "__main__":
                         inner_menu_choice1 = input("Please Choose a number: ")
                         if inner_menu_choice1 == "1":
                             print("")
-                            print("Your Current Username is:", usernick)
+                            print("Your Current Username is:", current_account.username)
                             usernick = input("Changed Username?")
-                            if mode == 1:
-                                usernick1 = usernick
-                            if mode == 2:
-                                usernick2 = usernick
-                            if mode == 3:
-                                usernick3 = usernick
-                            if mode == 4:
-                                usernick4 = usernick
+                            current_account.change_username(usernick)
                         if inner_menu_choice1 == "2":
                             print("")
-                            print("Your Current Name is:", username)
+                            print("Your Current Name is:", current_account.id)
                             username = input("Changed Name?")
-                            if mode == 1:
-                                username1 = username
-                            if mode == 2:
-                                username2 = username
-                            if mode == 3:
-                                username3 = username
-                            if mode == 4:
-                                username4 = username
+                            current_account.change_name(username)
                         if inner_menu_choice1 == "3":
                             break
 
-
                     if inner_menu_choice == "2":
                         print("")
-                        for person in ai_social_network.list_of_people:
-                            print(person.id)
+                        for person in ai_social_network.list_of_names:
+                            if person != current_user:
+                                print(person)
                         friend = input("Pick a user to friend: ")
-                        if friend == "Eli":
-                            if p1 in person.friendlist:
-                                print("Eli is already your friend")
+                        if friend in ai_social_network.list_of_names:
+                            if friend in current_account.friendlist:
+                                print(friend, " is already your friend")
                             else:
-                                person.friendlist.append(p1)
-                        if friend == "John":
-                            if p2 in person.friendlist:
-                                print("John is already your friend")
-                            else:
-                                person.friendlist.append(p2)
-                        if friend == "Jack":
-                            if p3 in person.friendlist:
-                                print("Jack is already your friend")
-                            else:
-                                person.friendlist.append(p3)
-
+                                current_account.friendlist.append(friend)
 
                     if inner_menu_choice == "3":
                         print("")
-                        for person in person.friendlist:
-                            print(person.id)
+                        for friend in current_account.friendlist:
+                            print(friend)
                         print("")
                         print("1. Block Friend")
                         print("2. Quit")
                         inner_menu_choice2 = input("Please Choose a number: ")
                         if inner_menu_choice2 == "1":
-                            for person in person.friendlist:
-                                print(person.id)
+                            print("")
                             friend_remove = input("Block Which Friend? ")
-                            if friend_remove == person.friendlist:
-                                person.friendlist.pop
+                            if friend_remove in current_account.friendlist:
+                                print("works")
+                                current_account.friendlist.remove(friend_remove)
                     
                     if inner_menu_choice == "4":
                         print("")
@@ -132,13 +94,14 @@ if __name__ == "__main__":
                         print("2. View message")
                         inner_menu_choice3 = input("Please Choose a number: ")
                         if inner_menu_choice3 == "1":
-                            for person in person.friendlist:
-                                print(person.id)
+                            for friend in current_account.friendlist:
+                                print(friend)
                             messagedirect = input("Send message to which person? ")
-                            if messagedirect == "Eli":
-                                message12 = []
-                                message12.append(input("What would you like to send? "))      
-                                print(current_user, ": ", message12)            
+                            if messagedirect in current_account.friendlist:
+                                ai_social_network.list_of_people[ai_social_network.list_of_names.index(messagedirect)].inbox.append([input("What is your message? "), current_user])
+                        if inner_menu_choice3 == "2":
+                            for message in current_account.inbox:
+                                print("'", message[0], "'", " from: ", message[1])  
                             
                     if inner_menu_choice == "5":
                         break
@@ -148,49 +111,16 @@ if __name__ == "__main__":
 
                     if inner_menu_choice == "6":
                         print("")
-                        if mode == 1:
-                            print("Name: " + username2 + ", Username: " + usernick2)
-                            print("Name: " + username3 + ", Username: " + usernick3)
-                            print("Name: " + username4 + ", Username: " + usernick4)
-                        if mode == 2:
-                            print("Name: " + username1 + ", Username: " + usernick1)
-                            print("Name: " + username3 + ", Username: " + usernick3)
-                            print("Name: " + username4 + ", Username: " + usernick4)
-                        if mode == 3:
-                            print("Name: " + username1 + ", Username: " + usernick1)
-                            print("Name: " + username2 + ", Username: " + usernick2)
-                            print("Name: " + username4 + ", Username: " + usernick4)
-                        if mode == 4:
-                            print("Name: " + username1 + ", Username: " + usernick1)
-                            print("Name: " + username2 + ", Username: " + usernick2)
-                            print("Name: " + username3 + ", Username: " + usernick3)
+                        for person in ai_social_network.list_of_names:
+                            print(person)
+                        switch = input("Pick user (enter name): ")
+                        if switch in ai_social_network.list_of_names:
+                            current_user = switch
+                            current_account = ai_social_network.list_of_people[ai_social_network.list_of_names.index(switch)]
+                else:
+                    print("")
+                    print("You need to make an account first")
 
-
-                        current_user = input("Pick user (enter name): ")
-                        if current_user == username1:
-                            username = username1
-                            usernick = usernick1
-                            userage = userage1
-                            mode = 1
-                            current_mode = 1
-                        if current_user == username2:
-                            username = username2
-                            usernick = usernick2
-                            userage = userage2
-                            mode = 2
-                            current_mode = 2
-                        if current_user == username3:
-                            username = username3
-                            usernick = usernick3
-                            userage = userage3
-                            mode = 3
-                            current_mode = 3
-                        if current_user == username4:
-                            username = username4
-                            usernick = usernick4
-                            userage = userage4
-                            mode = 4
-                            current_mode = 4
 
 
         elif choice == "3":

@@ -1,25 +1,8 @@
 # A class to hold general system wide social media data and functions. Eg Data objects of all people, Eg functions: Save social media to disk
 class SocialNetwork:
     def __init__(self):
-        self.list_of_people = [] # this instance variable is initialized to an empty list when social network is created, 
-        username1 = "Eli"
-        usernick1 = "LOL"
-        userage1 = "15"
-        username2 = "John"
-        usernick2 = "WOW"
-        userage2 = "14"
-        username3 = "Jack"
-        usernick3 = "JackAttack"
-        userage3 = "17"
-        mode = 4
-
-        p1 = Person(username1, usernick1, userage1)
-        p2 = Person(username2, usernick2, userage2)
-        p3 = Person(username3, usernick3, userage3)
-
-        self.list_of_people.append(p1)
-        self.list_of_people.append(p2)
-        self.list_of_people.append(p3)
+        self.list_of_people = [Person("Eli", "LOL", 15), Person("John", "WOW", 14), Person("Jack", "JackAttack", 17)] # this instance variable is initialized to an empty list when social network is created, 
+        self.list_of_names = ["Eli", "John", "Jack"]
 # you can save objects of people on the network in this list
 
     ## For more challenge try this
@@ -47,7 +30,7 @@ class Person:
         self.username = user
         self.year = age
         self.friendlist = []
-        self.indox = []
+        self.inbox = []
         
     def add_friend(self, person_object):
         #implement adding friend. Hint add to self.friendlist
@@ -56,3 +39,9 @@ class Person:
     def send_message(self, friend_name, message):
         #implement sending message to friend here
         pass
+
+    def change_name(self, name):
+        self.id = name
+
+    def change_username(self, username):
+        self.username = username
