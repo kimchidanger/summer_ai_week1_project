@@ -1,0 +1,22 @@
+Class: Person
+Attributes
+- name
+- username
+- age
+- friend list
+Functions
+- change name
+- change username
+- send message
+- receive messages
+- add friends
+- view friends
+
+Class: Social Network
+Attributes
+- list of people
+- list of names
+Functions
+- list people/names
+- creating/saving user data
+- switch accounts
