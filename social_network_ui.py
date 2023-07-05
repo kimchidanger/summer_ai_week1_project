@@ -7,7 +7,7 @@ def mainMenu():
     print("3. Quit")
     print("********************************************************")
     return input("Please Choose a number: ")
-
+ 
 def manageAccountMenu():
     print("")
     print("1. Edit my details")
